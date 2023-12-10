@@ -28,7 +28,7 @@ class _HomePageState extends State<HomePage> {
   dynamic cityDestinationId;
   // calculate costs
   List<Costs> calculateCost = [];
-  bool checkCostLoading = false;
+  bool checkCostLoading = false; // belum nemu cara pasang di hitung biaya ongkir
   dynamic dataLength;
 
   TextEditingController beratBarang = TextEditingController();
@@ -449,14 +449,24 @@ class _HomePageState extends State<HomePage> {
                               shape: const LinearBorder(),
                             ),
                             onPressed: () async {
+                              if (beratBarang.text.isEmpty ||
+                                  selectedProvinceOrigin == null ||
+                                  selectedProvinceDestination == null ||
+                                  selectedCityOrigin == null ||
+                                  selectedCityDestination == null ||
+                                  jasaPengiriman == null) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text("Harap isi semua data"),
+                                  ),
+                                );
+                                return;
+                              }
                               calculateCost = await getCosts(
                                   cityOriginId,
                                   cityDestinationId,
                                   beratBarang.text,
                                   jasaPengiriman);
-                              setState(() {
-                                checkCostLoading = true;
-                              });
                             },
                             child: const Text(
                               'Hitung Estimasi Harga',

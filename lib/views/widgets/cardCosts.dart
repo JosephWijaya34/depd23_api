@@ -19,14 +19,14 @@ class _CardCostsState extends State<CardCosts> {
       elevation: 2,
       child: ListTile(
         contentPadding: const EdgeInsets.fromLTRB(16, 8, 8, 8),
-        leading: CircleAvatar(
+        leading: const CircleAvatar(
           backgroundImage: AssetImage('assets/images/reynaldo2.png'),
         ),
         title:
             // for(var j in cost ?? [])
             Text(
           "${costs.description} (${costs.service})",
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.black, fontWeight: FontWeight.bold, fontSize: 16),
         ),
         subtitle: Column(
@@ -35,12 +35,12 @@ class _CardCostsState extends State<CardCosts> {
             for (var i in costs.cost ?? [])
               Text(
                 "Biaya: Rp.${i.value},00",
-                style: TextStyle(color: Colors.grey, fontSize: 12),
+                style: const TextStyle(color: Colors.grey, fontSize: 12),
               ),
             for (var i in costs.cost ?? [])
               Text(
                 "Estimasi Sampai: ${i.etd} Hari",
-                style: TextStyle(color: Colors.green),
+                style: const TextStyle(color: Colors.green),
               ),
           ],
         ),
